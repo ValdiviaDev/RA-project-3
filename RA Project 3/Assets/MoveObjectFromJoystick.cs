@@ -11,12 +11,18 @@ public class MoveObjectFromJoystick : MonoBehaviour
     public float velocity = 0.05f;
     private Vector3 initial_pos = new Vector3();
 
+
+    int collision = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         joystick = FindObjectOfType<Joystick>();
         joybutton = FindObjectOfType<Joybutton>();
         initial_pos = transform.position;
+        collision = LayerMask.GetMask("Obstacles");
+
+        Debug.Log(collision.ToString());
     }
 
     // Update is called once per frame
@@ -32,9 +38,12 @@ public class MoveObjectFromJoystick : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
 
-        Debug.Log("COLLISION XD");
-        transform.position = initial_pos;
 
+        if (col.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+            transform.position = initial_pos;
+
+        if (col.gameObject.layer == LayerMask.NameToLayer("FinishLine"))
+            Debug.Log("Goal Reached");
 
     }
 }
