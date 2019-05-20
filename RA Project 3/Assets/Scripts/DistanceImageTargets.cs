@@ -8,6 +8,9 @@ public class DistanceImageTargets : MonoBehaviour
     public GameObject point1 = null;
     public GameObject point2 = null;
 
+    public Text p1t = null;
+    public Text p2t = null;
+    public Text distancet = null;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +21,11 @@ public class DistanceImageTargets : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(point1 && point2)
+        if(point1 && point2 && p1t && p2t && distancet)
         {
-            GetComponent<Text>().text = (point1.transform.position - point2.transform.position).ToString();
+            p1t.text = "Car position " + point1.ToString();
+            p2t.text = "Finish position " + point2.ToString();
+            distancet.text = "Distance " + (point1.transform.position - point2.transform.position).ToString();
         }
     }
 }

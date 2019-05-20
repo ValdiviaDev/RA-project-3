@@ -34,8 +34,8 @@ public class AutoScale : MonoBehaviour
             //gameObject.transform.position = centerPos;
             //gameObject.transform.localScale = new Vector3(scaleX, scaleY, 1);
 
-            if (position) position.text = gameObject.transform.position.ToString();
-            if (scale) scale.text = gameObject.transform.localScale.ToString();
+            if (position) position.text = "Scenary position " + gameObject.transform.position.ToString();
+            if (scale) scale.text = "Scenary scale " + gameObject.transform.localScale.ToString();
         }
     }
 }
