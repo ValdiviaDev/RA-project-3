@@ -38,12 +38,16 @@ public class MoveObjectFromJoystick : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
 
-
         if (col.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
             transform.position = initial_pos;
 
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
         if (col.gameObject.layer == LayerMask.NameToLayer("FinishLine"))
             Debug.Log("Goal Reached");
 
     }
+
 }
