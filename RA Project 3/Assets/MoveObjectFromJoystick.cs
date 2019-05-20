@@ -22,7 +22,7 @@ public class MoveObjectFromJoystick : MonoBehaviour
     {
         var rigidbody = GetComponent<Rigidbody>();
 
-        rigidbody.velocity = new Vector3(joystick.Horizontal * velocity + Input.GetAxis("Horizontal") * velocity,
-            joystick.Vertical * velocity + Input.GetAxis("Vertical") * velocity, rigidbody.velocity.z);
+        rigidbody.velocity = new Vector3(joystick.Vertical * velocity + Input.GetAxis("Vertical") * velocity,
+         rigidbody.velocity.y, -joystick.Horizontal * velocity + Input.GetAxis("Horizontal") * velocity);
     }
 }
