@@ -8,6 +8,8 @@ public class MoveObjectFromJoystick : MonoBehaviour
     protected Joystick joystick;
     protected Joybutton joybutton;
 
+    public float velocity = 0.05f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,7 @@ public class MoveObjectFromJoystick : MonoBehaviour
     {
         var rigidbody = GetComponent<Rigidbody>();
 
-        rigidbody.velocity = new Vector3(joystick.Horizontal * 0.01f + Input.GetAxis("Horizontal") * 0.01f,
-            rigidbody.velocity.y,
-            joystick.Vertical * 0.01f + Input.GetAxis("Vertical") * 0.01f);
+        rigidbody.velocity = new Vector3(joystick.Horizontal * velocity + Input.GetAxis("Horizontal") * velocity,
+            joystick.Vertical * velocity + Input.GetAxis("Vertical") * velocity, rigidbody.velocity.z);
     }
 }
