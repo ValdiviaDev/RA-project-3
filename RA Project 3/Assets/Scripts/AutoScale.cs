@@ -31,7 +31,7 @@ public class AutoScale : MonoBehaviour
 
             centerPos.x -= 0.5f;
             centerPos.y += 0.5f;
-            gameObject.transform.position = centerPos;
+            //gameObject.transform.position = centerPos;
             //gameObject.transform.localScale = new Vector3(scaleX, scaleY, 1);
 
             if (position) position.text = gameObject.transform.position.ToString();
