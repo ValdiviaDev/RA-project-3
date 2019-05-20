@@ -24,7 +24,7 @@ public class DistanceImageTargets : MonoBehaviour
         if(point1 && point2 && p1t && p2t && distancet)
         {
             p1t.text = "Car position " + point1.transform.position.ToString();
-            p2t.text = "Finish position " + point1.transform.position.ToString();
+            p2t.text = "Finish position " + point2.transform.position.ToString();
             distancet.text = "Distance " + (point1.transform.position - point2.transform.position).ToString();
         }
     }
