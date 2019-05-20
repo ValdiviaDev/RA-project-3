@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AutoScale : MonoBehaviour
 {
 
     public GameObject point1 = null;
     public GameObject point2 = null;
-
+    public Text position = null;
+    public Text scale = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,9 @@ public class AutoScale : MonoBehaviour
             centerPos.y += 0.5f;
             gameObject.transform.position = centerPos;
             //gameObject.transform.localScale = new Vector3(scaleX, scaleY, 1);
+
+            if (position) position.text = gameObject.transform.position.ToString();
+            if (scale) scale.text = gameObject.transform.localScale.ToString();
         }
     }
 }
