@@ -8,6 +8,8 @@ public class SheerSoundControl : MonoBehaviour
     public AudioClip explosion;
     public AudioClip click;
 
+    public LevelsManager lvlManager;
+
     bool game_finished = false;
 
     // Start is called before the first frame update
@@ -26,18 +28,27 @@ public class SheerSoundControl : MonoBehaviour
     {
 
         if (col.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
+        {
             source.PlayOneShot(click);
+            lvlManager.Restart();
+        }
 
     }
 
 
     void OnTriggerEnter(Collider col)
     {
-        if(!game_finished)
+        if (!game_finished)
+        {
             if (col.gameObject.layer == LayerMask.NameToLayer("FinishLine"))
+            {
                 source.PlayOneShot(explosion);
-
-        game_finished = true;
+                lvlManager.NextLvl();
+                transform.position = Vector3.zero;
+            }
+            if(lvlManager.currentStage == LevelsManager.Stage.LVL_3)
+                game_finished = true;
+        }
     }
 
 }

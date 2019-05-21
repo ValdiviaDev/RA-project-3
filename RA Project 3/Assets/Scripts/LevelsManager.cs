@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class LevelsManager : MonoBehaviour
 {
-    enum Stage
+    public enum Stage
     {
         NONE = -1,
         LVL_1,
-        LVL_2
+        LVL_2,
+        LVL_3
     }
 
-    Stage currentStage = Stage.NONE;
+    public Stage currentStage = Stage.NONE;
 
     StartsWhenDetect TrackedElements;
 
@@ -19,6 +20,7 @@ public class LevelsManager : MonoBehaviour
 
     public GameObject Level1Prefab;
     public GameObject Level2Prefab;
+    public GameObject Level3Prefab;
 
     public GameObject LevelsSpawner;
 
@@ -41,5 +43,56 @@ public class LevelsManager : MonoBehaviour
             Instantiate(Level1Prefab, LevelsSpawner.transform);
         }
 
+    }
+
+    public void Restart()
+    {
+        if (LevelsSpawner.transform.childCount > 0)
+        {
+            for (int i = 0; i <= LevelsSpawner.transform.childCount; i++)
+                Destroy(LevelsSpawner.transform.GetChild(i++).gameObject);
+        }
+        switch (currentStage)
+        {
+            case Stage.LVL_1:
+             {
+                    Instantiate(Level1Prefab, LevelsSpawner.transform);
+                    break;
+             }
+            case Stage.LVL_2:
+                {
+                    Instantiate(Level2Prefab, LevelsSpawner.transform);
+                    break;
+                }
+            case Stage.LVL_3:
+                {
+                    Instantiate(Level3Prefab, LevelsSpawner.transform);
+                    break;
+                }
+        }
+    }
+
+    public void NextLvl()
+    {
+        if (LevelsSpawner.transform.childCount > 0)
+        {
+            for (int i = 0; i <= LevelsSpawner.transform.childCount; i++)
+                Destroy(LevelsSpawner.transform.GetChild(i++).gameObject);
+        }
+        switch (currentStage)
+        {
+            case Stage.LVL_1:
+                {
+                    currentStage = Stage.LVL_2;
+                    Instantiate(Level2Prefab, LevelsSpawner.transform);
+                    break;
+                }
+            case Stage.LVL_2:
+                {
+                    currentStage = Stage.LVL_3;
+                    Instantiate(Level3Prefab, LevelsSpawner.transform);
+                    break;
+                }
+        }
     }
 }
