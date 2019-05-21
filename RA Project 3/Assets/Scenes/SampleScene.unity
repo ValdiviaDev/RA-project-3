@@ -1055,6 +1055,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SheerHA: {fileID: 611135183}
+  LookOverHere: {fileID: 8300000, guid: 1cf6435975821964dbff35b3613285b0, type: 3}
+  soundTime: 5
 --- !u!1 &323374401
 GameObject:
   m_ObjectHideFlags: 0
