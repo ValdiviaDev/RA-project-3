@@ -40,7 +40,6 @@ public class MoveObjectFromJoystick : MonoBehaviour
 
         if (col.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
             transform.position = initial_pos;
-
     }
 
     void OnTriggerEnter(Collider col)

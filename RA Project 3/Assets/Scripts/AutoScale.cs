@@ -24,15 +24,10 @@ public class AutoScale : MonoBehaviour
             Vector3 startPos = point1.transform.position;
             Vector3 endPos = point2.transform.position;
 
-            Vector3 centerPos = new Vector3(startPos.x + endPos.x, startPos.y + endPos.y) / 2;
+            Vector3 centerPos = new Vector3(endPos.x, 0f, endPos.z) / 2f;
 
-            float scaleX = Mathf.Abs(startPos.x - endPos.x);
-            float scaleY = Mathf.Abs(startPos.y - endPos.y);
-
-            centerPos.x -= 0.5f;
-            centerPos.y += 0.5f;
-            //gameObject.transform.position = centerPos;
-            //gameObject.transform.localScale = new Vector3(scaleX, scaleY, 1);
+            gameObject.transform.position = centerPos;
+            //gameObject.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
 
             if (position) position.text = "Scenary position " + gameObject.transform.position.ToString();
             if (scale) scale.text = "Scenary scale " + gameObject.transform.localScale.ToString();
