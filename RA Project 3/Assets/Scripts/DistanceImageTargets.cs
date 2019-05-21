@@ -25,7 +25,7 @@ public class DistanceImageTargets : MonoBehaviour
         {
             p1t.text = "Car position " + point1.transform.position.ToString();
             p2t.text = "Finish position " + point2.transform.position.ToString();
-            distancet.text = "Distance " + (point1.transform.position - point2.transform.position).ToString();
+            distancet.text = "Distance " + (point2.transform.position - point1.transform.position).ToString();
         }
     }
 }
