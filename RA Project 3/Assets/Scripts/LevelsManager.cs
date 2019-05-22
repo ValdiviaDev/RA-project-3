@@ -40,7 +40,7 @@ public class LevelsManager : MonoBehaviour
         if(start && currentStage == Stage.NONE)
         {
             currentStage = Stage.LVL_1;
-            LevelsSpawner.transform.position = new Vector3(TrackedElements.finish.gameObject.transform.position.x, 0, TrackedElements.finish.gameObject.transform.position.z);
+            LevelsSpawner.transform.position = new Vector3(TrackedElements.finish.gameObject.transform.position.x, 0, TrackedElements.finish.gameObject.transform.position.z) / 2;
             Instantiate(Level1Prefab, LevelsSpawner.transform);
         }
 
