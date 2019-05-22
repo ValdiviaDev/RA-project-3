@@ -22,7 +22,6 @@ public class SheerController : MonoBehaviour
 
     //Start label
     bool label_trigger = true;
-    bool label_enabled = false;
     public GameObject start_label;
     float labelimer = 0.0f;
     public float labelTime = 5.0f;
