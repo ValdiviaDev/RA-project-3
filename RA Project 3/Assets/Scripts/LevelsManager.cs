@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelsManager : MonoBehaviour
 {
@@ -74,11 +75,6 @@ public class LevelsManager : MonoBehaviour
 
     public void NextLvl()
     {
-        if (LevelsSpawner.transform.childCount > 0)
-        {
-            for (int i = 0; i <= LevelsSpawner.transform.childCount; i++)
-                Destroy(LevelsSpawner.transform.GetChild(i++).gameObject);
-        }
         switch (currentStage)
         {
             case Stage.LVL_1:
@@ -93,6 +89,20 @@ public class LevelsManager : MonoBehaviour
                     Instantiate(Level3Prefab, LevelsSpawner.transform);
                     break;
                 }
+            case Stage.LVL_3:
+                {
+                    SceneManager.LoadSceneAsync("FinishScene");
+                    break;
+                }
         }
+    }
+
+    public void ClearActualLvl()
+    {
+        if (LevelsSpawner.transform.childCount > 0)
+        {
+            for (int i = 0; i <= LevelsSpawner.transform.childCount; i++)
+                Destroy(LevelsSpawner.transform.GetChild(i++).gameObject);
+        
     }
 }

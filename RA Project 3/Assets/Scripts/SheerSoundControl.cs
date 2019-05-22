@@ -12,6 +12,8 @@ public class SheerSoundControl : MonoBehaviour
 
     bool game_finished = false;
 
+    bool waitToNextLvlM = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,13 @@ public class SheerSoundControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(waitToNextLvlM && !source.isPlaying)
+        {
+            waitToNextLvlM = false;
+            lvlManager.NextLvl();
+            transform.position = Vector3.zero;
+            game_finished = false;
+        }
     }
 
     void OnCollisionEnter(Collision col)
@@ -43,11 +51,10 @@ public class SheerSoundControl : MonoBehaviour
             if (col.gameObject.layer == LayerMask.NameToLayer("FinishLine"))
             {
                 source.PlayOneShot(explosion);
-                lvlManager.NextLvl();
-                transform.position = Vector3.zero;
+                lvlManager.ClearActualLvl();
+                waitToNextLvlM = true;
             }
-            if(lvlManager.currentStage == LevelsManager.Stage.LVL_3)
-                game_finished = true;
+            game_finished = true;
         }
     }
 

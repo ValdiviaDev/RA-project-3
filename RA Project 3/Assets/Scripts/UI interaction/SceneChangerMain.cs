@@ -15,7 +15,7 @@ public class SceneChangerMain : MonoBehaviour, IPointerUpHandler, IPointerDownHa
     public void OnPointerUp(PointerEventData eventData)
     {
         Pressed = false;
-        SceneManager.LoadSceneAsync("SampleScene");
+        SceneManager.LoadSceneAsync("MainScene");
     }
 
     // Start is called before the first frame update
