@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SheerSoundControl : MonoBehaviour
+public class SheerController : MonoBehaviour
 {
     AudioSource source;
     public AudioClip explosion;
@@ -18,6 +18,8 @@ public class SheerSoundControl : MonoBehaviour
 
     bool waitToNextLvlM = false;
 
+    MoveObjectFromJoystick sheerMovement;
+
     //Start label
     bool label_trigger = true;
     bool label_enabled = false;
@@ -25,11 +27,16 @@ public class SheerSoundControl : MonoBehaviour
     float labelimer = 0.0f;
     public float labelTime = 5.0f;
 
+    //Explosion
+    public GameObject explosionParticle;
+    float explosiontimer = 0.0f;
+    public float explosionTime = 1.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         source = GetComponent<AudioSource>();
+        sheerMovement = GetComponent<MoveObjectFromJoystick>();
     }
 
     // Update is called once per frame
@@ -57,11 +64,23 @@ public class SheerSoundControl : MonoBehaviour
             }
         }
 
+        if(waitToNextLvlM)
+        {
+            explosiontimer += Time.deltaTime;
+            if(explosiontimer >= explosionTime)
+            {
+                explosionParticle.SetActive(true);
+            }
+        }
+
         if (waitToNextLvlM && !source.isPlaying)
         {
             waitToNextLvlM = false;
             lvlManager.NextLvl();
             transform.position = Vector3.zero;
+            explosionParticle.SetActive(false);
+            explosiontimer = 0;
+            sheerMovement.canMove = true;
             game_finished = false;
         }
     }
@@ -86,6 +105,7 @@ public class SheerSoundControl : MonoBehaviour
             {
                 source.PlayOneShot(explosion);
                 lvlManager.ClearActualLvl();
+                sheerMovement.canMove = false;
                 waitToNextLvlM = true;
             }
             game_finished = true;

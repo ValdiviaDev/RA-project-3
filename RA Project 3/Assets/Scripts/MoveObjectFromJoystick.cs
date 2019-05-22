@@ -14,6 +14,10 @@ public class MoveObjectFromJoystick : MonoBehaviour
 
     int collision = 0;
 
+    public bool canMove = true;
+
+    Rigidbody rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,17 +25,21 @@ public class MoveObjectFromJoystick : MonoBehaviour
         joybutton = FindObjectOfType<Joybutton>();
         initial_pos = transform.position;
         collision = LayerMask.GetMask("Obstacles");
-
-        Debug.Log(collision.ToString());
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var rigidbody = GetComponent<Rigidbody>();
-
-        rigidbody.velocity = new Vector3(joystick.Vertical * velocity + Input.GetAxis("Vertical") * velocity,
-         rigidbody.velocity.y, -joystick.Horizontal * velocity + Input.GetAxis("Horizontal") * velocity);
+        if (canMove)
+        {
+            rigidbody.velocity = new Vector3(joystick.Vertical * velocity + Input.GetAxis("Vertical") * velocity,
+            rigidbody.velocity.y, -joystick.Horizontal * velocity + Input.GetAxis("Horizontal") * velocity);
+        }
+        else
+        {
+            rigidbody.velocity = Vector3.zero;
+        }
     }
 
 
