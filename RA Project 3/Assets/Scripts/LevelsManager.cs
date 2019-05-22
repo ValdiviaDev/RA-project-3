@@ -103,6 +103,6 @@ public class LevelsManager : MonoBehaviour
         {
             for (int i = 0; i <= LevelsSpawner.transform.childCount; i++)
                 Destroy(LevelsSpawner.transform.GetChild(i++).gameObject);
-        
+        }
     }
 }
